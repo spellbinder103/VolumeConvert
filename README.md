@@ -8,3 +8,5 @@ This Software is serve for my Novel Series "The Chosen One", in Novel Scene's Pr
 此软件是为我的小说【神选者】系列而服务的，在小说的某个场景主人公与炼金术士们嫌弃将不同的体积单位换来换去，于是便着手开发了此魔改版的软件方便转换。
 
 ![Screenshot](screenshot1.png)
+
+![Screenshot](screenshot2.png)
