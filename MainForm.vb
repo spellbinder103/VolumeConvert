@@ -20,9 +20,9 @@
     Private Sub ClickAndGo(sender As Object, e As EventArgs) Handles ToolStripMenuItem3.Click, ToolStripMenuItem2.Click, ToolStripMenuItem1.Click
         ' pairing the incoming objects as menu items
         ' 配对传入的物件为菜单项
-        Dim MyMenuItem As ToolStripMenuItem = CType(sender, ToolStripMenuItem)
+        Dim CurrentMenuItem As ToolStripMenuItem = CType(sender, ToolStripMenuItem)
 
-        Select Case MyMenuItem.Name
+        Select Case CurrentMenuItem.Name
             Case "ToolStripMenuItem2"
                 ' run routine below if menu item name is "ToolStripMenuItem2"
                 ' 如果菜单项名称为“ToolStripMenuItem2”则运行以下程式
@@ -48,13 +48,13 @@
     Private Sub NumericOnly(sender As Object, e As KeyPressEventArgs) Handles TextBox6.KeyPress, TextBox5.KeyPress, TextBox4.KeyPress, TextBox3.KeyPress, TextBox2.KeyPress, TextBox1.KeyPress
         ' pairing the incoming objects as textbox
         ' 配对传入的物件为文本框
-        Dim MyTextBox As TextBox = CType(sender, TextBox)
+        Dim CurrentTextBox As TextBox = CType(sender, TextBox)
         ' get string length from textbox
         ' 从文本框中获取字符串长度
-        Dim TextLength As Integer = MyTextBox.Text.Length
+        Dim CurrentTextLength As Integer = CurrentTextBox.Text.Length
         ' Get number of points from textbox
         ' 从文本框中获取点的数量
-        Dim NumberOfPoint As Integer = InStr(MyTextBox.Text, ".")
+        Dim NumberOfPoint As Integer = InStr(CurrentTextBox.Text, ".")
 
         Select Case True
             Case Char.IsControl(e.KeyChar)
@@ -68,7 +68,7 @@
             Case e.KeyChar = "."
                 ' if return from key press event argument is points
                 ' 如果从按键事件参数传回来的是点
-                If TextLength > 0 And NumberOfPoint = 0 Then
+                If CurrentTextLength > 0 And NumberOfPoint = 0 Then
                     ' if string length is larger than 0 and number of points is 0, it will not be handled
                     ' 如果字符串长度大于0且点数为0，则不处理
                     e.Handled = False
@@ -89,11 +89,11 @@
     Private Sub TextCopy(sender As Object, e As EventArgs) Handles Button6.Click, Button5.Click, Button4.Click, Button3.Click, Button2.Click, Button1.Click
         ' pairing the incoming objects as button
         ' 配对传入的物件为按钮
-        Dim MyButton As Button = CType(sender, Button)
+        Dim CurrentButton As Button = CType(sender, Button)
 
         ' copy string from corresponding textbox according button name
         ' 根据按钮名称从相应的文本框中复制字符串
-        Select Case MyButton.Name
+        Select Case CurrentButton.Name
             Case "Button1"
                 Clipboard.SetText(TextBox1.Text)
             Case "Button2"
@@ -127,15 +127,15 @@
     Private Sub EnterAndCalculate(sender As Object, e As KeyEventArgs) Handles TextBox6.KeyDown, TextBox5.KeyDown, TextBox4.KeyDown, TextBox3.KeyDown, TextBox2.KeyDown, TextBox1.KeyDown
         ' pairing the incoming objects as textbox
         ' 配对传入的物件为文本框
-        Dim MyTextBox As TextBox = CType(sender, TextBox)
+        Dim CurrentTextBox As TextBox = CType(sender, TextBox)
 
         ' calculate the formula according which textbox where enter key pressed
         ' 根据按下回车键的文本框计算公式
         If e.KeyCode = Keys.Enter Then
-            Dim num As Decimal = CDec(MyTextBox.Text)
+            Dim num As Decimal = CDec(CurrentTextBox.Text)
             Dim answer As Decimal
 
-            Select Case MyTextBox.Name
+            Select Case CurrentTextBox.Name
                 Case "TextBox1"
                     answer = CDec(num / (10 ^ 3))
                     TextBox2.Text = Math.Round(answer, 15).ToString()
